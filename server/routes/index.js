@@ -21,10 +21,10 @@ mongoose
   })
   .then(() => console.log("MongoDB connected"))
   .catch((error) => console.error(error));
-
- 
+   
+     
 /* GET home page. */    
-router.get("/api/",checkUser,getHomepage);
+router.get("/api/",checkUser,getHomepage);  
               
 router.get('/api/fetch-matches',fetchMatches)
 

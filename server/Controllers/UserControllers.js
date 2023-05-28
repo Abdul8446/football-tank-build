@@ -22,7 +22,8 @@ const s3 = new S3Client({
     region:bucketRegion,      
 })
 
-const getHomepage = async (req,res,next)=>{                                              
+const getHomepage = async (req,res,next)=>{     
+    console.log('home page function')                                         
     try {        
         const user=req?.user
         let features = await Features.find() 
@@ -44,6 +45,7 @@ const getNavbar = async (req,res)=>{
             req.query.defaultTimeStamp +
             "/5.30?MD=1"
         );
+        console.log('navmatches=============',navMatches)
         res.json({navMatches:navMatches.data})
       } catch (error) {
         res.json(error);

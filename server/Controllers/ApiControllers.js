@@ -2,6 +2,7 @@ require('dotenv').config()
 const axios = require('axios')
 
 module.exports.fetchMatches= async (req, res)=> {
+    console.log(process.env.FETCH_MATCH_URL,'fetch-match url')
     try {
       if ("timeStamp" in req.query) {
         // do something if the timestamp property is present
@@ -10,6 +11,7 @@ module.exports.fetchMatches= async (req, res)=> {
             req.query.timeStamp +
             "/5.30?MD=1"
         );
+        console.log(matchData.data)
         res.json(matchData.data);
       } else {
         // do something else if the timestamp property is not present
@@ -18,14 +20,17 @@ module.exports.fetchMatches= async (req, res)=> {
             req.query.defaultTimeStamp +
             "/5.30?MD=1"
         );
+        console.log(matchData.data)
         res.json(matchData.data);
       }
     } catch (error) {
+        console.log(error)
       res.json(error);
     }
 }
 
 module.exports.competitionsList = async (req, res) => {
+    console.log(process.env.COMPETITIONS_LIST_URL,'competitions list url')
     try {   
       let complist = await axios.get(
         process.env.COMPETITIONS_LIST_URL
