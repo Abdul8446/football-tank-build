@@ -2,7 +2,6 @@ require('dotenv').config()
 const axios = require('axios')
 
 module.exports.fetchMatches= async (req, res)=> {
-    console.log(process.env.FETCH_MATCH_URL,'fetch-match url')
     try {
       if ("timeStamp" in req.query) {
         // do something if the timestamp property is present
@@ -11,7 +10,6 @@ module.exports.fetchMatches= async (req, res)=> {
             req.query.timeStamp +
             "/5.30?MD=1"
         );
-        console.log(matchData.data)
         res.json(matchData.data);
       } else {
         // do something else if the timestamp property is not present
@@ -20,17 +18,14 @@ module.exports.fetchMatches= async (req, res)=> {
             req.query.defaultTimeStamp +
             "/5.30?MD=1"
         );
-        console.log(matchData.data)
         res.json(matchData.data);
       }
     } catch (error) {
-        console.log(error)
       res.json(error);
     }
 }
 
 module.exports.competitionsList = async (req, res) => {
-    console.log(process.env.COMPETITIONS_LIST_URL,'competitions list url')
     try {   
       let complist = await axios.get(
         process.env.COMPETITIONS_LIST_URL
@@ -103,7 +98,6 @@ module.exports.matchStats=async (req,res)=>{
 }
 
 module.exports.competitionOverview=async (req,res)=>{
-    console.log(req.query.url)
     try {      
         const overview=await axios.get(req.query.url)
         res.json(overview.data.Stages[0])
@@ -123,7 +117,6 @@ module.exports.teamOverview = async (req,res)=>{
 
 module.exports.getAllTeamDetails = async (req,res)=>{
     try {
-        console.log(req.query)
         if(req.query.fixturesUrl!=='false'){
             const fixtures=await axios.get(req.query.fixturesUrl)
             const results=await axios.get(req.query.resultsUrl)
@@ -148,7 +141,6 @@ module.exports.getAllTeamDetails = async (req,res)=>{
 
 module.exports.getAllPlayerStats = async (req,res)=>{
     try {
-        console.log(req.query)
         if(req.query.goalsUrl!=='false'){
             const goals=await axios.get(req.query.goalsUrl)
             res.json({goals:goals.data})
@@ -170,7 +162,7 @@ module.exports.getNewsList=async (req,res)=>{
           })
         res.json(newsList.data)
     } catch (error) {   
-        console.log(error)
+        res.json(error)
     }
 }  
 
@@ -188,7 +180,6 @@ module.exports.h2h=async (req,res)=>{
         const h2h=await axios.get(req.query.url)
         res.json(h2h.data)
     } catch (error) {
-        console.log(error)
         res.status(400).json({error:error.message})
     }    
 }
