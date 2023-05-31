@@ -10,12 +10,12 @@ const { addProfilePicture, changeProfilePicture, deleteProfilePicture, getImageU
 const { createPaymentIntent, activatePremiumSubscription } = require("../Controllers/SubscriptionControllers");
 const storage = multer.memoryStorage()
 const upload = multer({storage:storage})
-
+require('dotenv').config()
     
 
 // connect to MongoDB database
 mongoose
-  .connect("mongodb+srv://velvetstore:lceQfQJ1SCBrD2fj@cluster0.dxv6kr8.mongodb.net/football-tank", {
+  .connect(process.env.MONGODB_CONNECTION_STRING, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

@@ -14,7 +14,7 @@ module.exports = (http) => {
 
     // Handle events and data from the admin client
     socket.on('userBlocked', (data) => {
-
+        console.log('user blocked message received in server for user :',data)
       // Emit the data to the user client(s)
       io.emit('userBlocked', data);
     });

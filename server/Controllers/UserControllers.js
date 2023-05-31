@@ -23,11 +23,9 @@ const s3 = new S3Client({
 })
 
 const getHomepage = async (req,res,next)=>{     
-    console.log('home page function')                                         
     try {        
         const user=req?.user
         let features = await Features.find() 
-        console.log(features)
         if(user){
             res.status(200).json({user:user,features:features});   
         }else{
@@ -45,7 +43,6 @@ const getNavbar = async (req,res)=>{
             req.query.defaultTimeStamp +
             "/5.30?MD=1"
         );
-        console.log('navmatches=============',navMatches)
         res.json({navMatches:navMatches.data})
       } catch (error) {
         res.json(error);
@@ -136,6 +133,7 @@ const deleteProfilePicture= async (req,res)=>{
 }
 
 const getImageUrl = async (req,res)=>{
+    console.log(bucketName,'bucketname')
     try {
         const user = await User.findById(req.query.userId)
         if(!user.pic){
@@ -147,6 +145,7 @@ const getImageUrl = async (req,res)=>{
             }
             const getCommand = new GetObjectCommand(getObjectParams);
             const url = await getSignedUrl(s3, getCommand,{expiresIn:100000});
+            console.log(url,"urlll  ")
             res.json({imageName:url}) 
         }
     } catch (error) {
