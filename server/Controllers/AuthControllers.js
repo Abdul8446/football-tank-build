@@ -98,7 +98,7 @@ module.exports.adminLogin=(req,res)=>{
   if(user){
     try {
       //Generate an access token
-      const accessToken=jwt.sign({id:user.id,email:user.email},'basithadminsupersecretkey',{expiresIn:300})
+      const accessToken=jwt.sign({id:user.id,email:user.email},'basithadminsupersecretkey',{expiresIn:60})
       res.json({user,accessToken})    
     } catch (error) {
       res.json(error.message)

@@ -23,6 +23,7 @@ module.exports.usersData = async (req, res) => {
     } else {
       const users = await User.find({}).exec(); // Use exec() to execute the query and return a promise
       // You can send the retrieved users to the client or perform other operations with the data
+      console.log(users)
       res.json(users);
     }
   } catch (err) {

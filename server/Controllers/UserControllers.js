@@ -144,7 +144,7 @@ const getImageUrl = async (req,res)=>{
                 Key:user.pic,
             }
             const getCommand = new GetObjectCommand(getObjectParams);
-            const url = await getSignedUrl(s3, getCommand,{expiresIn:100000});
+            const url = await getSignedUrl(s3, getCommand,{expiresIn:100000});   
             console.log(url,"urlll  ")
             res.json({imageName:url}) 
         }
