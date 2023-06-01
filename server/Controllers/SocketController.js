@@ -4,7 +4,16 @@ const Chat = require('../Models/ChatModel')
 module.exports = (http) => {   
   const io = socketio(http, { 
     cors: {
-      origin:[process.env.CLIENT_URL,process.env.ADMIN_URL],
+      origin:[
+        "http://localhost:3000",
+        "http://localhost:3001",
+        "http://football-tank.site",
+        "http://www.football-tank.site",
+        "https://www.football-tank.site",
+        "http://football-tank.site",
+        "http://admin.football-tank.site",
+        "https://admin.football-tank.site",
+    ],
       methods: ["GET", "POST"]
     }
   });   
