@@ -3,6 +3,7 @@ const Chat = require('../Models/ChatModel')
       
 module.exports = (http) => {   
   const io = socketio(http, { 
+    path: "/api/socket.io/",
     cors: {
       origin:[
         "http://localhost:3000",
