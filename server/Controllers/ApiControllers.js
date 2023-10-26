@@ -51,10 +51,12 @@ module.exports.featuredNews = async (req, res) => {
       let news = await axios.get(
         process.env.FEATURED_NEWS_URL,{
           headers:{
-            'project':'livescore.com'
+            'project':'livescore.com',
+            'origin':'https://www.livescore.com'
           }
         }
-      );    
+      );  
+      console.log(news.data,'======================================')  
       res.json(news.data);
     } catch (error) {
       res.json(error);

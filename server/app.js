@@ -27,7 +27,7 @@ app.use(
       "http://www.football-tank.site",
       "https://www.football-tank.site",
       "http://football-tank.site",
-      "http://admin.football-tank.site",
+      "http://admin.football-tank.site", 
       "https://admin.football-tank.site",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
